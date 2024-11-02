@@ -13,217 +13,139 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            overflow: hidden;
-            background: #000; /* Dark background */
-            color: #fff;
+            background-color: #121212;
+            color: #ffffff;
         }
 
         .container {
-            position: relative;
             text-align: center;
-            width: 90%;
-            max-width: 600px;
             padding: 20px;
-            background-color: rgba(20, 20, 20, 0.8);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            background-color: #282828;
+            box-shadow: 0 0 15px rgba(0, 255, 127, 0.6); /* Green neon shadow */
+            width: 90%;
+            max-width: 500px;
+            animation: fadeIn 1.5s ease;
+            position: relative;
         }
 
-        /* Neon text and border effect */
-        .neon-border {
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 3px solid #ff007f; /* Neon border */
-            box-shadow: 0 0 15px #ff007f, 0 0 25px #ff007f, 0 0 35px #ff007f, 0 0 45px #ff007f;
-            color: white;
+        .neon-text {
+            color: #00ff7f; /* Green neon color */
             font-weight: bold;
-            background-color: rgba(25, 25, 25, 0.9);
-        }
-
-        /* Title with neon effect */
-        .title {
             font-size: 2.5rem;
-            color: #ff007f; /* Neon pink */
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: glow 1.5s ease-in-out infinite alternate;
-            text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+            text-shadow: 0 0 10px #00ff7f, 0 0 20px #00ff7f, 0 0 30px #00ff7f;
+            margin-bottom: 15px;
         }
 
-        /* Upper bottom text styling */
-        .upper-bottom-text {
-            font-size: 1.5rem; /* Adjust font size as needed */
-            color: #ff007f; /* Neon pink */
-            margin: 20px 0; /* Space above and below */
-            animation: glow 1.5s ease-in-out infinite alternate;
-            text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+        .display-section {
+            margin: 15px 0;
+            padding: 12px;
+            color: #ffffff;
+            font-size: 1.5rem;
+            border: 3px solid #00ff7f; /* Green neon border */
+            border-radius: 8px;
+            background-color: rgba(40, 40, 40, 0.9);
+            text-shadow: 0 0 5px #00ff7f;
+            animation: pulse 2s infinite;
         }
 
-        /* History box styling */
+        /* History styling */
         .history {
-            width: 92%; /* Adjusted width to 92% */
-            max-height: 150px;
+            margin-top: 20px;
+            max-height: 200px;
             overflow-y: auto;
-            border: 3px solid #ff007f;
+            border: 2px solid #00ff7f; /* Green neon border */
             border-radius: 8px;
             padding: 10px;
-            background-color: rgba(20, 20, 20, 0.9);
-            box-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+            background-color: rgba(20, 20, 20, 0.8);
         }
 
         .history-item {
             display: flex;
             justify-content: space-between;
-            padding: 5px;
+            padding: 8px;
             margin: 5px 0;
-            color: #fff;
+            color: #ffffff;
+            font-size: 1rem;
+            border-bottom: 1px solid #00ff7f; /* Green neon border */
             background-color: rgba(40, 40, 40, 0.8);
             border-radius: 4px;
         }
 
-        /* Neon effect for footer text */
-        .footer-text {
-            font-size: 1.2rem;
-            color: #ff007f; /* Neon pink */
-            margin-top: 20px;
-            animation: glow 1.5s ease-in-out infinite alternate;
-            text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Neon particles */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 10px #00ff7f; }
+            50% { box-shadow: 0 0 20px #00ff7f; }
         }
-
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, #ff007f, transparent);
-            border-radius: 50%;
-            animation: float 5s ease-in-out infinite;
-            opacity: 0.8;
-        }
-
-        /* Particle floating animation */
-        @keyframes float {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(-30px) scale(1.2);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(0) scale(1);
-                opacity: 0.8;
-            }
-        }
-
-        /* Title neon glow animation */
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
-            }
-            to {
-                text-shadow: 0 0 20px #ff007f, 0 0 30px #ff007f, 0 0 40px #ff007f;
-            }
-        }
-
     </style>
 </head>
 <body>
-    <div class="particles"></div>
-
     <div class="container">
-        <div class="title">IVAR ULTIMATE</div>
+        <div class="neon-text">Prediction Timer</div>
+        <div class="display-section" id="periodDisplay">Period Number: Loading...</div>
+        <div class="display-section" id="timerDisplay">Timer: 00 : 00</div>
+        <div class="display-section" id="resultDisplay">Result: Waiting...</div>
 
-        <div class="upper-bottom-text">30 SEC WINGO</div> <!-- Changed text to '30 SEC WINGO' -->
-
-        <div class="neon-border">Period Number: <span id="periodNumber">Loading...</span></div>
-        <div class="neon-border">Timer: <span id="timer">00 : 00</span></div>
-        <div class="neon-border">Result: <span id="result">Waiting...</span></div>
-
+        <!-- History Section -->
         <div class="history">
             <strong>History</strong>
             <div id="historyList"></div>
         </div>
-
-        <!-- Footer Text -->
-        <div class="footer-text">PRESENT BY IVAR</div>
     </div>
 
     <script>
-        const periodNumber = document.getElementById("periodNumber");
-        const timerDisplay = document.getElementById("timer");
-        const resultDisplay = document.getElementById("result");
-        const historyList = document.getElementById("historyList");
-
-        const resultsArray = ["SMALL", "SMALL", "BIG", "SMALL", "SMALL", "BIG", "BIG", "BIG", "BIG", "SMALL", "BIG", "SMALL", "BIG", "SMALL", "SMALL", "SMALL"];
+        const resultsArray = ["BIG", "SMALL", "SMALL", "BIG", "BIG", "BIG", "BIG", "BIG", "SMALL", "SMALL", "BIG", "SMALL", "SMALL", "SMALL", "SMALL", "SMALL", "BIG", "SMALL", "BIG"];
         let lastPeriod = null;
-        let lastResult = null;
 
-        // Function to update period and display result
-        function updatePeriodAndResult() {
+        function updateDisplay(period, timer, result) {
+            document.getElementById("periodDisplay").textContent = `Period Number: ${period}`;
+            document.getElementById("timerDisplay").textContent = `Timer: ${timer}`;
+            document.getElementById("resultDisplay").textContent = `Result: ${result}`;
+        }
+
+        function updateTimerDisplay(timer) {
+            document.getElementById("timerDisplay").textContent = `Timer: ${timer}`;
+        }
+
+        function getPeriodNumber() {
             const now = new Date();
-            const seconds = now.getUTCSeconds();
-            const remainingSeconds = 30 - (seconds % 30); // Adjust for 30-second interval
-            const minutes = now.getUTCMinutes();
-            const totalMinutes = now.getUTCHours() * 60 + minutes;
+            const minutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+            const periodBase = 10001 + minutes * 2 + (now.getUTCSeconds() >= 30 ? 1 : 0);
+            return `${now.toISOString().slice(0, 10).replace(/-/g, '')}30${periodBase}`;
+        }
 
-            // Update period number for 30-second interval
-            const newPeriodNumber = `${now.toISOString().slice(0, 10).replace(/-/g, '')}30${(1 + totalMinutes * 2 + (seconds >= 30 ? 1 : 0))}`;
+        function addToHistory(period, result) {
+            const historyList = document.getElementById("historyList");
+            const historyItem = document.createElement("div");
+            historyItem.classList.add("history-item");
+            historyItem.innerHTML = `<span>Period: ${period}</span><span>Result: ${result}</span>`;
+            historyList.prepend(historyItem); // Add the new item at the top
+        }
 
-            // Check if the period number has changed
-            if (newPeriodNumber !== lastPeriod) {
-                lastPeriod = newPeriodNumber;
-                periodNumber.textContent = newPeriodNumber;
-
-                // Randomly select a result for each new period
+        function updatePeriodAndResult() {
+            const newPeriod = getPeriodNumber();
+            if (newPeriod !== lastPeriod) {
+                lastPeriod = newPeriod;
                 const randomIndex = Math.floor(Math.random() * resultsArray.length);
                 const result = resultsArray[randomIndex];
-                resultDisplay.textContent = result;
-
-                // Add result to history only if it's new
-                if (result !== lastResult) {
-                    lastResult = result;
-                    const historyItem = document.createElement("div");
-                    historyItem.className = "history-item";
-                    historyItem.innerHTML = `<span>Period: ${newPeriodNumber}</span><span>Result: ${result}</span>`;
-                    historyList.prepend(historyItem);
-                }
-            }
-
-            // Update timer display for 30-second interval
-            timerDisplay.textContent = `00 : ${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
-        }
-
-        // Run update every second
-        setInterval(updatePeriodAndResult, 1000);
-
-        // Generate random particles
-        function createParticles() {
-            const particlesContainer = document.querySelector('.particles');
-            for (let i = 0; i < 100; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                particle.style.top = `${Math.random() * 100}vh`;
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random duration for each particle
-                particlesContainer.appendChild(particle);
+                updateDisplay(newPeriod, "00 : 30", result);
+                addToHistory(newPeriod, result);
             }
         }
 
-        createParticles();
+        setInterval(() => {
+            const now = new Date();
+            const remainingSeconds = 30 - (now.getUTCSeconds() % 30);
+            const formattedTime = `00 : ${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            updateTimerDisplay(formattedTime);
+            if (remainingSeconds === 30) {
+                updatePeriodAndResult();
+            }
+        }, 1000);
     </script>
 </body>
 </html>
