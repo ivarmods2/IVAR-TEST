@@ -5,80 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prediction Display</title>
     <style>
+        /* Body styling */
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1e1e2e;
-            color: #ffffff;
+            background: linear-gradient(135deg, #222222, #333333);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
+            overflow: hidden;
+            color: #ffffff;
         }
 
+        /* Main container styling */
         .container {
-            width: 400px;
+            width: 450px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
             padding: 20px;
-            background-color: #1a1a1a;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.5);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
+        /* Header styling */
         h1 {
-            color: #ff4d4d;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            text-shadow: 0 0 8px #ff0000;
-        }
-
-        .box {
+            font-size: 2em;
+            color: #FFD700;
             margin: 10px 0;
-            padding: 12px;
-            background-color: #222;
-            border-radius: 8px;
-            border: 2px solid #ff4d4d; /* Neon red border */
-            color: #ffffff;
-            font-size: 1.2em;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), 0 0 10px rgba(255, 0, 0, 0.7); /* Red neon shadow */
+            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
         }
 
-        #timer {
-            color: #ffb74d;
-            font-size: 1.3em;
+        /* Period, Result, Timer boxes */
+        .box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid #FFD700;
+            color: #FFD700;
             font-weight: bold;
+            font-size: 1.3em;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            transition: transform 0.2s ease;
         }
 
-        #currentResult {
-            font-size: 1.2em;
-            color: #ff4d4d;
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        /* Timer display styling */
+        #timer {
+            font-size: 2em;
+            color: #FFD700;
+        }
+
+        /* History styling */
+        .history-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid #FFD700;
+            max-height: 180px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
         }
 
         .history-list {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
-            max-height: 120px;
-            overflow-y: auto;
-            text-align: left;
+            margin: 0;
+            color: #FFD700;
         }
 
         .history-item {
-            padding: 6px;
-            margin: 4px 0;
-            background: rgba(255, 0, 0, 0.1); /* Subtle red background */
-            border-left: 3px solid #ff4d4d;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            margin-bottom: 6px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
+            color: #ffffff;
+            font-weight: bold;
+            animation: slideIn 0.5s ease;
         }
+
+        /* Particle container styling */
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #FFD700;
+            opacity: 0.6;
+            border-radius: 50%;
+            animation: floatParticles 8s linear infinite;
+            box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+        }
+
+        /* Animations */
+        @keyframes floatParticles {
+            0% { transform: translateY(0); opacity: 0.8; }
+            100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .result-update {
+            animation: fadeIn 0.8s ease forwards;
+            color: #FFD700;
+        }
+
     </style>
 </head>
 <body>
 
+<div class="particle-container">
+    <!-- Particles for visual effect -->
+    <div class="particle" style="top: 80%; left: 20%;"></div>
+    <div class="particle" style="top: 90%; left: 40%;"></div>
+    <div class="particle" style="top: 70%; left: 60%;"></div>
+    <div class="particle" style="top: 80%; left: 80%;"></div>
+</div>
+
 <div class="container">
-    <h1>SHIBU PRIVATE SERVER</h1>
+    <h1>PRIVATE SERVER</h1>
 
     <div class="box">
         <div>Period Number</div>
         <div id="periodNumber">Loading...</div>
+    </div>
+
+    <div class="box result-update" id="currentResultContainer">
+        <div>Current Result</div>
+        <div id="currentResult">Waiting...</div>
     </div>
 
     <div class="box">
@@ -86,12 +165,7 @@
         <div id="timer">01:00</div>
     </div>
 
-    <div class="box">
-        <div>Current Result</div>
-        <div id="currentResult">Waiting...</div>
-    </div>
-
-    <div class="box">
+    <div class="history-box">
         <div>History</div>
         <ul id="history" class="history-list"></ul>
     </div>
@@ -101,13 +175,13 @@
     const periodNumberElement = document.getElementById('periodNumber');
     const timerElement = document.getElementById('timer');
     const currentResultElement = document.getElementById('currentResult');
+    const currentResultContainer = document.getElementById('currentResultContainer');
     const historyElement = document.getElementById('history');
 
     const results = [
-        'SMALL', 'BIG', 'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'BIG', 'SMALL', 'SMALL',
-        'RED', 'BIG', 'BIG', 'SMALL', 'GREEN', 'RED', 'GREEN', 'BIG', 'SMALL', 'SMALL',
-        'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'GREEN', 'GREEN', 'GREEN',
-        'RED', 'SMALL', 'GREEN', 'RED', 'SMALL', 'BIG', 'BIG', 'RED', 'SMALL', 'SMALL'
+        'Small', 'Small', 'Big', 'Big', 'Small', 'Small', 'Small', 'Big', 'Small', 'Small',
+        'Big', 'Big', 'Small', 'Small', 'Small', 'Small', 'Big', 'Small', 'Big', 'Big',
+        'Small', 'Small', 'Small', 'Big', 'Small', 'Big', 'Big', 'Small', 'Small', 'Small'
     ];
 
     let currentResultIndex = -1;
@@ -130,11 +204,25 @@
         if (periodNumber !== lastDisplayedPeriod && currentResultIndex < results.length - 1) {
             currentResultIndex++;
             const result = results[currentResultIndex];
-            currentResultElement.textContent = result;
 
+            // Display the new result with animation
+            currentResultElement.textContent = result;
+            currentResultContainer.classList.remove('result-update'); // Reset animation
+            void currentResultContainer.offsetWidth; // Trigger reflow for animation reset
+            currentResultContainer.classList.add('result-update');
+
+            // Add result to history with slide-in animation
             const historyItem = document.createElement('li');
-            historyItem.textContent = `Period: ${periodString}, Result: ${result}`;
             historyItem.className = 'history-item';
+
+            const periodDiv = document.createElement('span');
+            periodDiv.textContent = periodString;
+
+            const resultDiv = document.createElement('span');
+            resultDiv.textContent = result;
+
+            historyItem.appendChild(periodDiv);
+            historyItem.appendChild(resultDiv);
             historyElement.prepend(historyItem);
 
             lastDisplayedPeriod = periodNumber;
