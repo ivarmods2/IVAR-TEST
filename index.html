@@ -9,146 +9,125 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #222222, #333333);
+            background-color: #f0f4f8;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #333;
             overflow: hidden;
-            color: #ffffff;
         }
 
-        /* Main container styling */
+        /* Container styling */
         .container {
-            width: 450px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            width: 500px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
         /* Header styling */
         h1 {
-            font-size: 2em;
-            color: #FFD700;
-            margin: 10px 0;
-            text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+            font-size: 1.8em;
+            color: #4a90e2;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        /* Period, Result, Timer boxes */
+        /* Box styling */
         .box {
-            background: rgba(255, 255, 255, 0.1);
+            background: #e3f2fd;
             padding: 20px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 1px solid #FFD700;
-            color: #FFD700;
-            font-weight: bold;
-            font-size: 1.3em;
-            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
-            transition: transform 0.2s ease;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #bbdefb;
+            color: #333;
+            font-size: 1.1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .box:hover {
-            transform: scale(1.05);
+            transform: scale(1.03);
+            background-color: #eaf5ff;
         }
 
-        /* Timer display styling */
+        /* Timer styling */
         #timer {
-            font-size: 2em;
-            color: #FFD700;
+            font-size: 1.8em;
+            color: #4a90e2;
         }
 
-        /* History styling */
+        /* History box styling */
         .history-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-            border: 1px solid #FFD700;
-            max-height: 180px;
+            background: #f7faff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid #bbdefb;
+            max-height: 150px;
             overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
 
         .history-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            color: #FFD700;
+            color: #333;
         }
 
         .history-item {
             display: flex;
             justify-content: space-between;
             padding: 8px;
-            margin-bottom: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 5px;
+            background: #e3f2fd;
             border-radius: 5px;
-            color: #ffffff;
+            border: 1px solid #bbdefb;
+            color: #333;
             font-weight: bold;
-            animation: slideIn 0.5s ease;
+            font-size: 0.9em;
         }
 
-        /* Particle container styling */
-        .particle-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
+        /* Clear button styling */
+        .clear-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
         }
 
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background-color: #FFD700;
-            opacity: 0.6;
-            border-radius: 50%;
-            animation: floatParticles 8s linear infinite;
-            box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+        .clear-button:hover {
+            background-color: #357ABD;
+            transform: scale(1.05);
         }
 
-        /* Animations */
-        @keyframes floatParticles {
-            0% { transform: translateY(0); opacity: 0.8; }
-            100% { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
 
         .result-update {
-            animation: fadeIn 0.8s ease forwards;
-            color: #FFD700;
+            animation: pulse 1s ease infinite;
         }
-
     </style>
 </head>
 <body>
 
-<div class="particle-container">
-    <!-- Particles for visual effect -->
-    <div class="particle" style="top: 80%; left: 20%;"></div>
-    <div class="particle" style="top: 90%; left: 40%;"></div>
-    <div class="particle" style="top: 70%; left: 60%;"></div>
-    <div class="particle" style="top: 80%; left: 80%;"></div>
-</div>
-
 <div class="container">
-    <h1>PRIVATE SERVER</h1>
+    <h1>30 SEC PRIVATE SERVER</h1>
 
     <div class="box">
         <div>Period Number</div>
@@ -162,13 +141,16 @@
 
     <div class="box">
         <div>Timer</div>
-        <div id="timer">01:00</div>
+        <div id="timer">00:30</div>
     </div>
 
     <div class="history-box">
         <div>History</div>
         <ul id="history" class="history-list"></ul>
     </div>
+
+    <!-- Clear History Button -->
+    <button class="clear-button" onclick="clearHistory()">Clear History</button>
 </div>
 
 <script>
@@ -178,14 +160,20 @@
     const currentResultContainer = document.getElementById('currentResultContainer');
     const historyElement = document.getElementById('history');
 
+    // Fixed sequence of results
     const results = [
-        'GREEN', 'BIG', 'RED', 'SMALL', 'RED', 'SMALL', 'GREEN', 'BIG', 'GREEN', 'SMALL', 
-        'RED', 'SMALL', 'GREEN', 'SMALL', 'GREEN', 'BIG', 'RED', 'BIG', 'RED', 'BIG', 
-        'RED', 'SMALL', 'GREEN', 'SMALL', 'GREEN', 'BIG', 'RED', 'BIG', 'GREEN', 'BIG'
+        'BIG', 'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'BIG', 'BIG', 'BIG', 'BIG',
+        'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'BIG', 'SMALL', 'SMALL', 'SMALL', 'BIG',
+        'BIG', 'BIG', 'BIG', 'BIG', 'SMALL', 'BIG', 'BIG', 'SMALL', 'SMALL', 'SMALL',
+        'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'SMALL', 'SMALL', 'SMALL', 'SMALL', 'SMALL',
+        'SMALL', 'BIG', 'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'BIG', 'BIG', 'SMALL',
+        'BIG', 'SMALL', 'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'SMALL', 'BIG', 'BIG',
+        'SMALL', 'SMALL', 'BIG', 'BIG', 'BIG', 'SMALL'
     ];
 
-    let currentResultIndex = -1;
     let lastDisplayedPeriod = -1;
+    let firstPeriodDisplayed = false;
+    let resultIndex = 0;
 
     function updatePeriodAndResult() {
         const now = new Date();
@@ -194,55 +182,62 @@
         const utcDay = String(now.getUTCDate()).padStart(2, '0');
         const utcHours = now.getUTCHours();
         const utcMinutes = now.getUTCMinutes();
+        const seconds = now.getUTCSeconds();
+        const remainingSeconds = 30 - (seconds % 30);
 
+        // Calculate period number for each 30-second interval
         const totalMinutes = utcHours * 60 + utcMinutes;
-        const periodNumber = 10001 + totalMinutes;
-        const periodString = `${utcYear}${utcMonth}${utcDay}1000${periodNumber}`;
+        const periodNumber = 10001 + totalMinutes * 2 + (seconds >= 30 ? 1 : 0);
+        const periodString = `${utcYear}${utcMonth}${utcDay}30${periodNumber}`;
 
+        // Update period number display
         periodNumberElement.textContent = periodString;
 
-        if (periodNumber !== lastDisplayedPeriod && currentResultIndex < results.length - 1) {
-            currentResultIndex++;
-            const result = results[currentResultIndex];
-
-            // Display the new result with animation
-            currentResultElement.textContent = result;
-            currentResultContainer.classList.remove('result-update'); // Reset animation
-            void currentResultContainer.offsetWidth; // Trigger reflow for animation reset
-            currentResultContainer.classList.add('result-update');
-
-            // Add result to history with slide-in animation
-            const historyItem = document.createElement('li');
-            historyItem.className = 'history-item';
-
-            const periodDiv = document.createElement('span');
-            periodDiv.textContent = periodString;
-
-            const resultDiv = document.createElement('span');
-            resultDiv.textContent = result;
-
-            historyItem.appendChild(periodDiv);
-            historyItem.appendChild(resultDiv);
-            historyElement.prepend(historyItem);
-
+        // Show a new result only once per period change
+        if (periodNumber !== lastDisplayedPeriod) {
             lastDisplayedPeriod = periodNumber;
-        }
-    }
 
-    function startTimer() {
-        setInterval(() => {
-            const now = new Date();
-            const remainingSeconds = 60 - (now.getUTCSeconds() % 60);
-            const secondsDisplay = remainingSeconds.toString().padStart(2, '0');
-            timerElement.textContent = `00:${secondsDisplay}`;
+            if (firstPeriodDisplayed) {
+                // Display the result from the fixed sequence
+                const result = results[resultIndex];
+                currentResultElement.textContent = result;
+                currentResultContainer.classList.remove('result-update'); // Reset animation
+                void currentResultContainer.offsetWidth; // Trigger reflow for animation reset
+                currentResultContainer.classList.add('result-update');
 
-            if (remainingSeconds === 60) {
-                updatePeriodAndResult();
+                // Add result to history
+                const historyItem = document.createElement('li');
+                historyItem.className = 'history-item';
+
+                const periodDiv = document.createElement('span');
+                periodDiv.textContent = periodString;
+
+                const resultDiv = document.createElement('span');
+                resultDiv.textContent = result;
+
+                historyItem.appendChild(periodDiv);
+                historyItem.appendChild(resultDiv);
+                historyElement.prepend(historyItem);
+
+                // Move to the next result in the sequence
+                resultIndex = (resultIndex + 1) % results.length;
+            } else {
+                // Mark that the first period display is done
+                firstPeriodDisplayed = true;
             }
-        }, 1000);
+        }
+
+        // Update timer display
+        const secondsDisplay = remainingSeconds.toString().padStart(2, '0');
+        timerElement.textContent = `00:${secondsDisplay}`;
     }
 
-    window.onload = startTimer;
+    // Function to clear history
+    function clearHistory() {
+        historyElement.innerHTML = '';
+    }
+
+    setInterval(updatePeriodAndResult, 1000); // Update every second
 </script>
 
 </body>
