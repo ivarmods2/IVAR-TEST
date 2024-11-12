@@ -92,8 +92,8 @@
             font-size: 0.9em;
         }
 
-        /* Clear button styling */
-        .clear-button {
+        /* Button styling */
+        .button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 1em;
@@ -107,7 +107,7 @@
             box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
         }
 
-        .clear-button:hover {
+        .button:hover {
             background-color: #357ABD;
             transform: scale(1.05);
         }
@@ -127,7 +127,7 @@
 <body>
 
 <div class="container">
-    <h1>30 SEC PRIVATE SERVER</h1>
+    <h1>30 SEC WINGO PRIVATE SERVER</h1>
 
     <div class="box">
         <div>Period Number</div>
@@ -149,8 +149,9 @@
         <ul id="history" class="history-list"></ul>
     </div>
 
-    <!-- Clear History Button -->
-    <button class="clear-button" onclick="clearHistory()">Clear History</button>
+    <!-- Clear History and Refresh Buttons -->
+    <button class="button" onclick="clearHistory()">Clear History</button>
+    <button class="button" onclick="refreshResults()">Refresh Results</button>
 </div>
 
 <script>
@@ -235,6 +236,14 @@
     // Function to clear history
     function clearHistory() {
         historyElement.innerHTML = '';
+    }
+
+    // Function to reset the sequence to the beginning
+    function refreshResults() {
+        resultIndex = 0; // Reset the index to start from the first result
+        clearHistory();  // Clear the history
+        firstPeriodDisplayed = false;  // Reset to avoid display on the first load
+        currentResultElement.textContent = "Waiting..."; // Reset current result
     }
 
     setInterval(updatePeriodAndResult, 1000); // Update every second
