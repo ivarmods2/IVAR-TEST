@@ -8,75 +8,76 @@
         /* Body styling */
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
+            color: #ffffff;
             overflow: hidden;
         }
 
         /* Container styling */
         .container {
             width: 500px;
-            background: #ffffff;
-            padding: 25px;
+            background: #121212;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
         /* Header styling */
         h1 {
-            font-size: 1.8em;
-            color: #4a90e2;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            font-size: 2em;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+            margin: 0;
         }
 
-        /* Box styling */
+        /* Boxes styling */
         .box {
-            background: #e3f2fd;
-            padding: 20px;
+            background: #1e1e1e;
+            padding: 15px;
             border-radius: 8px;
             margin: 15px 0;
-            border: 2px solid #bbdefb;
-            color: #333;
-            font-size: 1.1em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            font-size: 1.2em;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .box:hover {
-            transform: scale(1.03);
-            background-color: #eaf5ff;
+            transform: scale(1.05);
+            background-color: #262626;
         }
 
         /* Timer styling */
         #timer {
-            font-size: 1.8em;
-            color: #4a90e2;
+            font-size: 2em;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
         }
 
         /* History box styling */
         .history-box {
-            background: #f7faff;
+            background: #1e1e1e;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 15px;
-            border: 2px solid #bbdefb;
+            margin-top: 10px;
+            border: 1px solid #00ffcc;
             max-height: 150px;
             overflow-y: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
         }
 
         .history-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            color: #333;
+            color: #00ffcc;
         }
 
         .history-item {
@@ -84,32 +85,10 @@
             justify-content: space-between;
             padding: 8px;
             margin-bottom: 5px;
-            background: #e3f2fd;
+            background: #121212;
             border-radius: 5px;
-            border: 1px solid #bbdefb;
-            color: #333;
+            color: #00ffcc;
             font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        /* Button styling */
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            color: #ffffff;
-            background-color: #4a90e2;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
-        }
-
-        .button:hover {
-            background-color: #357ABD;
-            transform: scale(1.05);
         }
 
         /* Animation */
@@ -127,7 +106,7 @@
 <body>
 
 <div class="container">
-    <h1>30 SEC WINGO PRIVATE SERVER</h1>
+    <h1>OBITO UCHIHA SERVER 1 RUNNING</h1>
 
     <div class="box">
         <div>Period Number</div>
@@ -148,10 +127,6 @@
         <div>History</div>
         <ul id="history" class="history-list"></ul>
     </div>
-
-    <!-- Clear History and Refresh Buttons -->
-    <button class="button" onclick="clearHistory()">Clear History</button>
-    <button class="button" onclick="refreshResults()">Refresh Results</button>
 </div>
 
 <script>
@@ -161,20 +136,16 @@
     const currentResultContainer = document.getElementById('currentResultContainer');
     const historyElement = document.getElementById('history');
 
-    // New fixed sequence of results
     const results = [
-        'BIG', 'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'BIG', 'SMALL', 'SMALL', 'BIG',
-        'BIG', 'SMALL', 'SMALL', 'BIG', 'SMALL', 'SMALL', 'BIG', 'BIG', 'BIG', 'SMALL',
-        'SMALL', 'BIG', 'SMALL', 'BIG', 'SMALL', 'SMALL', 'SMALL', 'BIG', 'BIG', 'BIG',
-        'BIG', 'SMALL', 'SMALL', 'BIG', 'SMALL', 'BIG', 'SMALL', 'BIG', 'BIG', 'BIG',
-        'SMALL', 'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'SMALL', 'BIG', 'SMALL', 'BIG',
-        'SMALL', 'BIG', 'SMALL', 'SMALL', 'SMALL', 'BIG', 'BIG', 'SMALL', 'SMALL', 'BIG',
-        'BIG', 'SMALL'
+        'BIG', 'SMALL', 'RED', 'GREEN'
     ];
 
     let lastDisplayedPeriod = -1;
     let firstPeriodDisplayed = false;
-    let resultIndex = 0;
+
+    function getRandomResult() {
+        return results[Math.floor(Math.random() * results.length)];
+    }
 
     function updatePeriodAndResult() {
         const now = new Date();
@@ -194,13 +165,14 @@
         // Update period number display
         periodNumberElement.textContent = periodString;
 
-        // Show a new result only once per period change
+        // Show a new random result only once per period change
         if (periodNumber !== lastDisplayedPeriod) {
             lastDisplayedPeriod = periodNumber;
 
+            // Avoid showing a result on the very first load
             if (firstPeriodDisplayed) {
-                // Display the result from the fixed sequence
-                const result = results[resultIndex];
+                // Display a random result
+                const result = getRandomResult();
                 currentResultElement.textContent = result;
                 currentResultContainer.classList.remove('result-update'); // Reset animation
                 void currentResultContainer.offsetWidth; // Trigger reflow for animation reset
@@ -219,9 +191,6 @@
                 historyItem.appendChild(periodDiv);
                 historyItem.appendChild(resultDiv);
                 historyElement.prepend(historyItem);
-
-                // Move to the next result in the sequence
-                resultIndex = (resultIndex + 1) % results.length;
             } else {
                 // Mark that the first period display is done
                 firstPeriodDisplayed = true;
@@ -231,19 +200,6 @@
         // Update timer display
         const secondsDisplay = remainingSeconds.toString().padStart(2, '0');
         timerElement.textContent = `00:${secondsDisplay}`;
-    }
-
-    // Function to clear history
-    function clearHistory() {
-        historyElement.innerHTML = '';
-    }
-
-    // Function to reset the sequence to the beginning
-    function refreshResults() {
-        resultIndex = 0; // Reset the index to start from the first result
-        clearHistory();  // Clear the history
-        firstPeriodDisplayed = false;  // Reset to avoid display on the first load
-        currentResultElement.textContent = "Waiting..."; // Reset current result
     }
 
     setInterval(updatePeriodAndResult, 1000); // Update every second
